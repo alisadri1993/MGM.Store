@@ -5,9 +5,11 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Store.Endpoint.Api", "Store.Endpoint.Api\Store.Endpoint.Api.csproj", "{3AFCF60A-0283-4913-AD49-125A3BB9200B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.Shared", "Store.Shared\Store.Shared.csproj", "{A02056E6-4677-4BAA-9964-231D3B4BFB70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Store.Shared", "Store.Shared\Store.Shared.csproj", "{A02056E6-4677-4BAA-9964-231D3B4BFB70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.Business", "Store.Business\Store.Business.csproj", "{7B7AD285-0E0F-49D8-9FF8-0891AE81D440}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Store.Business", "Store.Business\Store.Business.csproj", "{7B7AD285-0E0F-49D8-9FF8-0891AE81D440}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Store.console", "Store.console\Store.console.csproj", "{578098A6-3720-4432-8A42-8E6433449AB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{7B7AD285-0E0F-49D8-9FF8-0891AE81D440}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B7AD285-0E0F-49D8-9FF8-0891AE81D440}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B7AD285-0E0F-49D8-9FF8-0891AE81D440}.Release|Any CPU.Build.0 = Release|Any CPU
+		{578098A6-3720-4432-8A42-8E6433449AB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{578098A6-3720-4432-8A42-8E6433449AB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{578098A6-3720-4432-8A42-8E6433449AB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{578098A6-3720-4432-8A42-8E6433449AB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,6 +2,7 @@
 using Store.Business.DI;
 using Store.Business.Services;
 using Store.Shared.Dto;
+using Store.Shared.Models;
 
 namespace Store.Endpoint.Api.Controllers
 {
@@ -22,6 +23,20 @@ namespace Store.Endpoint.Api.Controllers
 
         [HttpGet("say")]
         public string saySalam()
+        {
+            throw new Exception("exception");
+            return "Salaaaaam".toMGMString(); // extention method
+        }
+        [HttpGet("say2")]
+        public string saySalam2()
+        {
+            throw new StoreException("StoreException", "exception");
+            return "Salaaaaam".toMGMString(); // extention method
+        }
+
+
+        [HttpGet("say3")]
+        public string saySalam3()
         {
             return "Salaaaaam".toMGMString(); // extention method
         }

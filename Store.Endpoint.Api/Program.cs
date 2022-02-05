@@ -1,5 +1,6 @@
 using Store.Business.DI;
 using Store.Business.Services;
+using Store.Endpoint.Api.infra.MiddlWares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthorization();
+
+
+app.UseMiddleware<MGMMiddleware>();
+app.UseMiddleware<ExceptionHandlerMiddleware>();
 
 app.MapControllers();
 
