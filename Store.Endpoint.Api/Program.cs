@@ -1,5 +1,6 @@
 using Store.Business.DI;
 using Store.Business.Services;
+using Store.Endpoint.Api.DI;
 using Store.Endpoint.Api.infra.MiddlWares;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddEndpointApi();
+
 builder.Services.AddSwaggerGen();
 //builder.Services.AddSingleton<IProductService, ProductService>();
 builder.Services.AddBusinessDependency();

@@ -2,56 +2,69 @@
 using Store.Business.Entities;
 using Store.Shared.Dto;
 
-namespace Store.Business.Services
+namespace Store.Business.Services;
+public class ProductService : IProductService
 {
-    public class ProductService : IProductService
+    private readonly ILogger<ProductService> logger;
+
+    public ProductService(ILogger<ProductService> logger)
     {
-        private readonly ILogger<ProductService> logger;
+        this.logger = logger;
+    }
 
-        public ProductService(ILogger<ProductService> logger)
+    public static List<Product> products = new();
+
+    public async Task<Guid> CreateAsync(ProductDto dto)
+    {
+        Product product = new Product();
+        product.name = dto.name;
+        product.qty = dto.qty;
+        product.price = dto.price;
+        product.id = Guid.NewGuid();
+
+        products.Add(product);
+
+        return product.id;
+    }
+
+
+    public async Task<List<ProductDto>> GetAllAsync(ProductRequest request)
+    {
+        return products.Where(p => p.name.Contains(request.name)).Skip(request.offset).Take(request.limit).Select(p => new ProductDto
         {
-            this.logger = logger;
-        }
+            name = p.name,
+            qty = p.qty,
+            price = p.price
+        }).ToList();
+    }
 
-        public static List<Product> products = new();
-
-        public async Task<Guid> CreateAsync(ProductDto dto)
+    public async Task<ProductDto> GetByIdAsync(Guid id)
+    {
+        var product = products.Where(p => p.id == id).FirstOrDefault();
+        if (product == null)
         {
-            Product product = new Product();
-            product.name = dto.name;
-            product.qty = dto.qty;
-            product.price = dto.price;
-            product.id = Guid.NewGuid();
-
-            products.Add(product);
-
-            return product.id;
+            logger.LogWarning($"Product with id {id} not exist!");
         }
-
-
-        public async Task<List<ProductDto>> GetAllAsync(ProductRequest request)
+        return new ProductDto
         {
-            return products.Where(p=>p.name.Contains(request.name)).Skip(request.offset).Take(request.limit).Select(p=>new ProductDto
-            {
-                name = p.name,
-                qty = p.qty,
-                price = p.price
-            }).ToList();
-        }
+            name = product.name,
+            qty = product.qty,
+            price = product.price
+        };
+    }
 
-        public async Task<ProductDto> GetByIdAsync(Guid id)
-        {
-            var product = products.Where(p=>p.id == id).FirstOrDefault();
-            if (product == null)
-            {
-                logger.LogWarning($"Product with id {id} not exist!");
-            }
-            return new ProductDto
-            {
-                name = product.name,
-                qty = product.qty,
-                price = product.price
-            };
-        }
+    public async Task<Guid> CreateAsync(ProductDto2 dto)
+    {
+        Product product = new();
+        product.name = dto.name;
+        product.qty = dto.qty;
+        product.price = dto.price;
+        product.description = dto.description;
+        product.id = Guid.NewGuid();
+
+        products.Add(product);
+
+        return product.id;
     }
 }
+

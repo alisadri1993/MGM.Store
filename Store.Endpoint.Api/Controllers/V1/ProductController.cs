@@ -4,10 +4,12 @@ using Store.Business.Services;
 using Store.Shared.Dto;
 using Store.Shared.Models;
 
-namespace Store.Endpoint.Api.Controllers
+namespace Store.Endpoint.Api.Controllers.V1
 {
     [ApiController]
-    [Route("api/v1/[Controller]/")]
+    [ApiVersion("1")]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    //api/v1/product/add
     public class ProductController : ControllerBase
     {
 
@@ -67,6 +69,12 @@ namespace Store.Endpoint.Api.Controllers
             return await productService.GetAllAsync(request);
         }
 
+        /// <summary>
+        /// سرویس ثبت مشخصات محصول
+        /// </summary>
+        /// <param name="product">مشخصات محصول</param>
+        /// <returns>شناسه محصول اضافه شده</returns>
+        /// 
         [HttpPost("add")]
         public async Task<Guid> Create(ProductDto product)
         {

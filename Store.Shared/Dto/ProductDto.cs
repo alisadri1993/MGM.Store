@@ -10,8 +10,15 @@ namespace Store.Shared.Dto
         [Range(10,100,ErrorMessage ="تعداد در بازه مورد نظر نیست")]
         public int qty { get; set; }
 
-        [Range(0,int.MaxValue,ErrorMessage ="قیمت نمی تواند منفی باشد")]
+       
+        [Range(0,int.MaxValue,ErrorMessage ="قیمت نمی تواند منفی باشد")]        
         public int price { get; set; }
 
+    }
+
+
+    public class ProductDto2: ProductDto
+    {
+        public string description { get; set; }
     }
 }
