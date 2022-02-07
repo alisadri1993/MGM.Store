@@ -10,7 +10,10 @@ namespace Store.console.Model
     {
         //        public string Name { get; set; } = "sadri";
         private static readonly object lockObject = new object();
-        private ApplicationSetting() { }
+        private  static Dictionary<string, string> Configs = new Dictionary<string, string>();
+        private ApplicationSetting() { 
+        
+        }
         private static ApplicationSetting instance = null;
         public static ApplicationSetting Instance
         {
@@ -21,10 +24,18 @@ namespace Store.console.Model
                     if (instance == null)
                     {
                         instance = new ApplicationSetting();
+
+                        Configs.Add("sabt", "");
+
                     }
                 }
                 return instance;
             }
+        }
+
+        public string  getConfig(string ket)
+        {
+            return Configs[ket];
         }
     }
 
