@@ -2,6 +2,7 @@ using Store.Business.DI;
 using Store.Business.Services;
 using Store.Endpoint.Api.DI;
 using Store.Endpoint.Api.infra.MiddlWares;
+using Store.FileManager.DI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddEndpointApi();
+builder.Services.AddFileManager(builder.Configuration);
 
 builder.Services.AddSwaggerGen();
 //builder.Services.AddSingleton<IProductService, ProductService>();
@@ -24,7 +26,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseAuthorization();
+//app.UseAuthorization();
 
 
 app.UseMiddleware<MGMMiddleware>();

@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Store.Business", "Store.Bus
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Store.console", "Store.console\Store.console.csproj", "{578098A6-3720-4432-8A42-8E6433449AB6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.FileManager", "Store.FileManager\Store.FileManager.csproj", "{3F9D466F-CEAF-4098-B8B3-E6A97D863FC3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{578098A6-3720-4432-8A42-8E6433449AB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{578098A6-3720-4432-8A42-8E6433449AB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{578098A6-3720-4432-8A42-8E6433449AB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F9D466F-CEAF-4098-B8B3-E6A97D863FC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F9D466F-CEAF-4098-B8B3-E6A97D863FC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F9D466F-CEAF-4098-B8B3-E6A97D863FC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F9D466F-CEAF-4098-B8B3-E6A97D863FC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

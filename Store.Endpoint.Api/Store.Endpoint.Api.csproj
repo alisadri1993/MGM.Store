@@ -23,7 +23,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Store.Business\Store.Business.csproj" />
+    <ProjectReference Include="..\Store.FileManager\Store.FileManager.csproj" />
     <ProjectReference Include="..\Store.Shared\Store.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Contents\Images\asjhdhgsjh-234324kj,234jhjmbcm\" />
   </ItemGroup>
 
 </Project>

@@ -22,7 +22,7 @@ namespace Store.Endpoint.Api.Controllers.V1
             this.productService = productService;
         }
 
-
+/*
         [HttpGet("say")]
         public string saySalam()
         {
@@ -88,7 +88,7 @@ namespace Store.Endpoint.Api.Controllers.V1
             return await productService.GetByIdAsync(id);
         }
 
-
+*/
 
     }
 }
