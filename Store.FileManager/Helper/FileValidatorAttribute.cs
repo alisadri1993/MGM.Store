@@ -1,5 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Store.FileManager.Models;
+using Store.FileManager.Service;
 
 namespace Store.FileManager.Helper
 {
@@ -15,18 +20,20 @@ namespace Store.FileManager.Helper
 
         }
 
-        /*private void InitializeFileSetting(IOptions<FileSetting> setting)
+        private void InitializeFileSetting(IOptions<FileSettings> setting)
         {
-            _maxFileSize = setting.Value.MaxFileSizeInKB;
+            _maxFileSize = setting.Value.MaxFileSize;
             if (_maxFileSize == 0) _maxFileSize = _defaultFileSizeInKB;
 
-            _validFileExtensionsInComaSeperate = setting.Value.AcceptableImageFormats;
+            _validFileExtensionsInComaSeperate = setting.Value?.AcceptableFormat;
             if (string.IsNullOrEmpty(_validFileExtensionsInComaSeperate)) _validFileExtensionsInComaSeperate = _defaultFileFormats;
-        }*/
+        }
         public override async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-           /* var setting = context.HttpContext.RequestServices.GetRequiredService<IOptions<FileSetting>>();
-            InitializeFileSetting(setting);*/
+            var setting = context.HttpContext.RequestServices.GetRequiredService<IOptions<FileSettings>>();
+            var fileService = context.HttpContext.RequestServices.GetRequiredService<IFileService>();
+            
+            InitializeFileSetting(setting);
 
             var file = context.HttpContext.Request.Form.Files[0] as IFormFile;
             ValidateSize(file);

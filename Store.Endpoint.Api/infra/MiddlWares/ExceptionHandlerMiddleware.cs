@@ -1,4 +1,6 @@
-﻿using Store.Shared.Models;
+﻿using Newtonsoft.Json;
+using Store.Endpoint.Api.infra.ExceptionHandlers.Interfaces;
+using Store.Shared.Models;
 using System.Net;
 
 namespace Store.Endpoint.Api.infra.MiddlWares
@@ -6,10 +8,17 @@ namespace Store.Endpoint.Api.infra.MiddlWares
     public class ExceptionHandlerMiddleware
     {
         private readonly RequestDelegate next;
+        private readonly IStoreExceptionHandler _storeExceptionHandler;
+        private readonly IServerExceptionHandler _serverExceptionHandler;
+        private readonly IExceptionHandler exceptionHandler;
 
-        public ExceptionHandlerMiddleware(RequestDelegate next)
+        public ExceptionHandlerMiddleware(RequestDelegate next,
+                                          IStoreExceptionHandler storeExceptionHandler,
+                                          IServerExceptionHandler serverExceptionHandler)
         {
             this.next = next;
+            _storeExceptionHandler = storeExceptionHandler;
+            _serverExceptionHandler = serverExceptionHandler;
         }
 
         public async Task Invoke(HttpContext context /* other dependencies */)
@@ -26,8 +35,15 @@ namespace Store.Endpoint.Api.infra.MiddlWares
 
         private Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
+
+            _storeExceptionHandler.SetNext(_serverExceptionHandler);
+            var appError =  _storeExceptionHandler.Handle(exception);
+            context.Response.StatusCode = (int)appError.HttpStatusCode;
+            return context.Response.WriteAsync(JsonConvert.SerializeObject(appError));
+/*
             string result = null;
             context.Response.ContentType = "application/json";
+            
             if (exception is StoreException)
             {
                 var storeException = (StoreException)exception;
@@ -47,7 +63,7 @@ namespace Store.Endpoint.Api.infra.MiddlWares
                 }.ToString();
                 context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
             }
-            return context.Response.WriteAsync(result);
+            return context.Response.WriteAsync(result);*/
         }
 
       

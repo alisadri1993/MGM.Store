@@ -13,10 +13,11 @@ namespace Store.Endpoint.Api.Controllers.V1
         private readonly ILogger<FileController> _logger;
         private readonly IFileService _fileService;
 
-        public FileController(ILogger<FileController> logger, IFileService fileService )
+        public FileController(ILogger<FileController> logger, IFileService fileService, IConfiguration configuration )
         {
             _logger = logger;
             _fileService = fileService;
+            var config = configuration["key"];
         }
 
 

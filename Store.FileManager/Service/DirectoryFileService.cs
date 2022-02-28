@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Store.FileManager.Helper;
 using System.Net.Http.Headers;
@@ -11,11 +12,12 @@ namespace Store.FileManager.Service
         private readonly ILogger<DirectoryFileService> _logger;
         //private readonly IOptions<FileSetting> _setting;
         private readonly string BasePath = Path.Combine(Directory.GetCurrentDirectory(), "Contents\\Images\\");
+        private string smsProviderAddress;
 
-
-        public DirectoryFileService(ILogger<DirectoryFileService> logger )
+        public DirectoryFileService(ILogger<DirectoryFileService> logger/*, IConfiguration configuration*/)
         {
             _logger = logger;
+            /*smsProviderAddress = configuration["smsProviderAddress"];*/
         }
 
 

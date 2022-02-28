@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Store.Endpoint.Api.infra.ExceptionHandlers;
+using Store.Endpoint.Api.infra.ExceptionHandlers.Interfaces;
 using Store.Endpoint.Api.infra.SwaggerConfig;
 using System.Reflection;
 
@@ -6,8 +8,20 @@ namespace Store.Endpoint.Api.DI
 {
     public static class ApiDependensyExtensions
     {
+
+        public static void AddExceptionHandlers(this IServiceCollection services)
+        {
+
+            services.AddSingleton<IStoreExceptionHandler, StoreExceptionHandler>();
+            services.AddSingleton<IServerExceptionHandler, ServerExceptionHandler>();
+        }
+
+
+
         public static void AddEndpointApi(this IServiceCollection services)
         {
+
+
             services.AddApiVersioning(configur =>
             {
                 configur.DefaultApiVersion = new ApiVersion(1, 0);

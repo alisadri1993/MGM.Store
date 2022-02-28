@@ -13,7 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddEndpointApi();
 builder.Services.AddFileManager(builder.Configuration);
-
+builder.Services.AddExceptionHandlers();
 builder.Services.AddSwaggerGen();
 //builder.Services.AddSingleton<IProductService, ProductService>();
 builder.Services.AddBusinessDependency();

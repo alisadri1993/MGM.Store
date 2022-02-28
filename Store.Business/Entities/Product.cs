@@ -7,7 +7,7 @@
         public int qty { get; set; }
         public int price { get; set; }
         public string description { get; set; }
-        public byte[] image { get; set; }
+        public string imageId { get; set; }
 
     }
 }
