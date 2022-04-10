@@ -35,11 +35,12 @@ namespace Store.Endpoint.Api.infra.MiddlWares
 
         private Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
-
+            
             _storeExceptionHandler.SetNext(_serverExceptionHandler);
             var appError =  _storeExceptionHandler.Handle(exception);
             context.Response.StatusCode = (int)appError.HttpStatusCode;
             return context.Response.WriteAsync(JsonConvert.SerializeObject(appError));
+
 /*
             string result = null;
             context.Response.ContentType = "application/json";
@@ -63,6 +64,7 @@ namespace Store.Endpoint.Api.infra.MiddlWares
                 }.ToString();
                 context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
             }
+
             return context.Response.WriteAsync(result);*/
         }
 

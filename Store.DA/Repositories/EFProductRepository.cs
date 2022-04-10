@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Store.console.Solid
+namespace Store.DA.Repositories
 {
-    /*internal class SingleResponsibility
+    internal class EFProductRepository
     {
-    }*/
+    }
 }

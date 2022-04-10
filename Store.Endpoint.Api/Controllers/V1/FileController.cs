@@ -33,6 +33,10 @@ namespace Store.Endpoint.Api.Controllers.V1
         [HttpGet("Download/{id}")]
         public async Task<FileContentResult> DownloadFile(string id)
         {
+            //throw new Exception("this is test");
+            //_logger.LogInformation(id);
+            //_logger.LogError(id);
+
             var fileInfo = await _fileService.GetFileByIdAsync(id);
             byte[] fileBytes = System.IO.File.ReadAllBytes(fileInfo?.FullName);
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileInfo.Name);

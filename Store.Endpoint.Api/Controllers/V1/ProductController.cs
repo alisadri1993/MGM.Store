@@ -76,7 +76,7 @@ namespace Store.Endpoint.Api.Controllers.V1
         /// <returns>شناسه محصول اضافه شده</returns>
         /// 
         [HttpPost("add")]
-        public async Task<Guid> Create(ProductDto product)
+        public async Task<int> Create(ProductDto product)
         {
             logger.LogInformation($"product created by name = {product.name}");
             return await productService.CreateAsync(product);
