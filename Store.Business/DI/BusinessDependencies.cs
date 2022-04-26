@@ -18,6 +18,7 @@ namespace Store.Business.DI
         public static void AddBusinessDependency(this IServiceCollection sevice)
         {
             sevice.AddSingleton<IProductService, ProductService>();
+            //sevice.AddMemoryCache();
         }
     }
 }

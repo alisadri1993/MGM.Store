@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Logging;
 using Store.Business.Entities;
 using Store.Business.Interfaces;
 using Store.Shared.Dto;
@@ -8,11 +9,13 @@ public class ProductService : IProductService
 {
     private readonly ILogger<ProductService> logger;
     private readonly IProductRepository _productRepository;
+    private readonly IMemoryCache _memoryCache;
 
-    public ProductService(ILogger<ProductService> logger,IProductRepository productRepository, IUnitOfWork unitOfWork)
+    public ProductService(ILogger<ProductService> logger,IProductRepository productRepository, IMemoryCache memoryCache)
     {
         this.logger = logger;
         _productRepository = productRepository;
+        _memoryCache = memoryCache;
     }
 
     //public static List<Product> products = new();
@@ -33,6 +36,10 @@ public class ProductService : IProductService
         //unitOfWork._productRepository.save()
         //var temp = await _StockRepository.save(productId, quntity);
         var pId = await _productRepository.Save(product);
+        //var oId = await _productRepository.Save(order);
+
+        //_memoryCache.Set("order"+ oId, order);//1
+        _memoryCache.Set("product"+ pId, product);//1
         
         return pId;
     }
@@ -49,7 +56,25 @@ public class ProductService : IProductService
 
     public Task<ProductDto> GetByIdAsync(Guid id)
     {
+
+        //_memoryCache.get("product" + pId, product);//1
         throw new NotImplementedException();
+    }
+
+    public async Task<ProductDto> GetByIdAsync(int id)
+    {
+        Product product = null;
+        product = _memoryCache.Get<Product>("product" + id);//1
+        if (product == null)
+        {
+            product = await _productRepository.GetById(id);
+            _memoryCache.Set("product" + id, product);//1
+        }
+        return new ProductDto
+        {
+            name = product.name
+
+        };
     }
 
     /*
